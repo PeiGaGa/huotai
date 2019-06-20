@@ -1,0 +1,14 @@
+.logo{
+    width: 194px;
+    height: 64px;
+}
+.logo>img{
+    height: 100%;
+    width: 100%;
+}
+.header{
+    display: flex;
+}
+.button{
+    margin-top: 16px;
+}

@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Switch,Route ,Redirect} from "react-router-dom"
+import {pageRouter} from "routers"
+import LayoutMain from "layout"
 
-function App() {
+class App extends React.Component {
+  
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Redirect from="/admin" to="/admin/home" exact/>
+      <LayoutMain>
+      {
+        pageRouter.map((item)=>(
+          <Route key={item.pathname} path={item.pathname} render={()=>{
+            return <item.component/>
+          }}/>
+        ))
+      }
+      </LayoutMain>
+      
+      <Redirect from="**" to="/404"/>
+    </Switch>
   );
+}
 }
 
 export default App;
